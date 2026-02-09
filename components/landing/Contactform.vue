@@ -17,7 +17,6 @@ onMounted(() => {
 
   if (!form || !result) return;
 
-  // evita adicionar múltiplos listeners se o componente montar novamente
   if (form.dataset.listenerAttached === "true") return;
   form.dataset.listenerAttached = "true";
 

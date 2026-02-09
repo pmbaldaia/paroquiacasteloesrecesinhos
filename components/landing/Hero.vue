@@ -32,7 +32,6 @@
       </p>
       <div class="mt-6 flex flex-col sm:flex-row gap-3">
         <UiLink href="/contacto">Enviar mensagem</UiLink>
-        <UiLink size="lg" styleName="outline" href="/about">Sobre nós</UiLink>
       </div>
     </div>
   </main>

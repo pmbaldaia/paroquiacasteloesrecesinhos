@@ -62,9 +62,8 @@ function close() {
               to="/politica-cookies"
               class="underline hover:text-slate-900"
             >
-              Política de Cookies
+              Política de Cookies.
             </NuxtLink>
-            .
           </p>
 
           <div class="mt-4 flex flex-col sm:flex-row gap-2 justify-end">

@@ -19,10 +19,16 @@ const sizes = {
 };
 
 const styles = {
-  outline: "bg-white border-2 border-black hover:bg-gray-100 text-black",
-  primary: "bg-black text-white hover:bg-gray-800  border-2 border-transparent",
-  inverted: "bg-white text-black border-2 border-transparent",
-  muted: "bg-gray-100 hover:bg-gray-200 border-2 border-transparent",
+  primary:
+    "bg-white text-gray-800 font-semibold border border-gray-400 shadow-sm hover:bg-gray-100 hover:text-gray-900",
+
+  outline:
+    "bg-white text-gray-800 font-semibold border border-gray-400 shadow-sm hover:bg-gray-100",
+
+  inverted:
+    "bg-gray-800 text-white font-semibold border border-gray-800 hover:bg-gray-700",
+
+  muted: "bg-gray-50 text-gray-700 border border-gray-200 hover:bg-gray-100",
 };
 </script>
 

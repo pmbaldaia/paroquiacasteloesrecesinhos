@@ -7,8 +7,7 @@ definePageMeta({
 <template>
   <UiContainer>
     <LandingHero></LandingHero>
-    <LandingFeatures></LandingFeatures>
-    <LandingLogos></LandingLogos>
-    <LandingCta></LandingCta>
+    <LandingHistory></LandingHistory>
+    <LandingAbout></LandingAbout>
   </UiContainer>
 </template>

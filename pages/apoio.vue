@@ -9,52 +9,74 @@ definePageMeta({
     <UiSectionhead>
       <template #title>Apoio</template>
       <template #desc>
-        Formas simples de apoiar a vida da comunidade e as obras de restauro.
+        Formas simples de apoiar o restauro da Igreja e a vida da comunidade.
       </template>
     </UiSectionhead>
 
-    <div class="mt-12 grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
+    <div class="mt-10 grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
       <section class="rounded-2xl border border-slate-200 p-6 bg-white">
-        <h2 class="text-lg font-semibold text-gray-800">Donativo pontual</h2>
+        <h2 class="text-lg font-semibold text-gray-800">
+          Donativo para o restauro
+        </h2>
         <p class="mt-2 text-sm text-slate-600">
-          Pode contribuir com um donativo para apoiar as obras de restauro e a
-          manutenção da Paróquia de Castelões de Recesinhos.
+          Pode contribuir com um donativo pontual para apoiar diretamente as
+          obras de restauro da Igreja.
         </p>
-        <p class="mt-4 text-xs text-slate-500">
-          Os dados para donativo serão partilhados localmente na paróquia ou
-          através de contacto direto.
+        <div class="mt-5">
+          <UiLink
+            href="/contacto"
+            styleName="outline"
+            class="w-full text-center"
+          >
+            Pedir dados para donativo
+          </UiLink>
+        </div>
+        <p class="mt-3 text-xs text-slate-500">
+          Os dados são partilhados através de contacto direto, para garantir
+          clareza e segurança.
         </p>
       </section>
 
       <section class="rounded-2xl border border-slate-200 p-6 bg-white">
-        <h2 class="text-lg font-semibold text-gray-800">
-          Contribuição regular
-        </h2>
+        <h2 class="text-lg font-semibold text-gray-800">Apoio regular</h2>
         <p class="mt-2 text-sm text-slate-600">
-          A contribuição regular ajuda a assegurar as despesas correntes da
-          comunidade e o acompanhamento pastoral ao longo de todo o ano.
+          Se preferir, pode apoiar de forma regular. Este gesto ajuda a manter o
+          acompanhamento das obras e as necessidades da comunidade ao longo do
+          ano.
         </p>
-        <p class="mt-4 text-xs text-slate-500">
-          Em breve será disponibilizada informação mais detalhada sobre formas
-          de contribuição periódica.
+        <div class="mt-5">
+          <UiLink
+            href="/contacto"
+            styleName="outline"
+            class="w-full text-center"
+          >
+            Falar connosco
+          </UiLink>
+        </div>
+        <p class="mt-3 text-xs text-slate-500">
+          Partilhamos consigo as opções disponíveis para contribuição periódica.
         </p>
       </section>
 
       <section class="rounded-2xl border border-slate-200 p-6 bg-white">
         <h2 class="text-lg font-semibold text-gray-800">Voluntariado</h2>
         <p class="mt-2 text-sm text-slate-600">
-          O seu tempo e disponibilidade são também uma forma de apoio. Há
-          várias áreas em que pode ajudar na vida da paróquia.
+          O seu tempo e disponibilidade também são uma forma de apoio. Há várias
+          tarefas em que pode ajudar, conforme a sua disponibilidade.
         </p>
-        <p class="mt-4 text-xs text-slate-500">
-          Se tiver interesse em colaborar, contacte-nos através da página de
-          <a href="/contacto" class="underline hover:text-slate-900">
-            contacto
-          </a>
-          .
+        <div class="mt-5">
+          <UiLink
+            href="/contacto"
+            styleName="outline"
+            class="w-full text-center"
+          >
+            Quero colaborar
+          </UiLink>
+        </div>
+        <p class="mt-3 text-xs text-slate-500">
+          Basta enviar uma mensagem e indicamos como pode participar.
         </p>
       </section>
     </div>
   </UiContainer>
 </template>
-

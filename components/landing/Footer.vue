@@ -1,5 +1,6 @@
 <template>
   <footer class="mt-16 mb-12 px-4">
+    <hr class="my-8">
     <p
       class="text-center text-xs text-slate-500 max-w-2xl mx-auto leading-relaxed"
     >
