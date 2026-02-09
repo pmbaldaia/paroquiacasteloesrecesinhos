@@ -7,7 +7,9 @@ const menuitems = [
 ];
 
 const open = ref(false);
+const route = useRoute();
 </script>
+
 <template>
   <UiContainer>
     <header class="mt-3 mb-2 lg:mt-4 lg:mb-0">
@@ -34,7 +36,12 @@ const open = ref(false);
             <li v-for="item of menuitems" :key="item.title">
               <a
                 :href="item.path"
-                class="rounded-md px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                :class="[
+                  'rounded-md px-3 py-2 transition-colors',
+                  route.path === item.path
+                    ? 'font-semibold text-gray-900 underline underline-offset-8 decoration-2 decoration-black'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50',
+                ]"
               >
                 {{ item.title }}
               </a>
@@ -111,7 +118,12 @@ const open = ref(false);
             <li v-for="item of menuitems" :key="item.title">
               <a
                 :href="item.path"
-                class="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                :class="[
+                  'block px-4 py-3 text-sm transition-colors',
+                  route.path === item.path
+                    ? 'font-semibold text-gray-900 underline underline-offset-4 decoration-2 decoration-black'
+                    : 'font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900',
+                ]"
                 @click="open = false"
               >
                 {{ item.title }}
