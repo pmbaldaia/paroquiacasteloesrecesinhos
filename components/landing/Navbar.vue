@@ -10,7 +10,7 @@ const open = ref(false);
 </script>
 <template>
   <UiContainer>
-    <header class="my-4 lg:my-6">
+    <header class="mt-3 mb-2 lg:mt-4 lg:mb-0">
       <div class="flex items-center justify-between gap-3">
         <a href="/" class="flex min-w-0 items-center gap-3">
           <img

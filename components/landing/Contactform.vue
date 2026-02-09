@@ -1,20 +1,43 @@
 <script setup>
+import { onMounted } from "vue";
+
+useHead({
+  script: [
+    {
+      src: "https://web3forms.com/client/script.js",
+      async: true,
+      defer: true,
+    },
+  ],
+});
+
 onMounted(() => {
   const form = document.getElementById("form");
   const result = document.getElementById("result");
 
+  if (!form || !result) return;
+
+  // evita adicionar múltiplos listeners se o componente montar novamente
+  if (form.dataset.listenerAttached === "true") return;
+  form.dataset.listenerAttached = "true";
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
+
     form.classList.add("was-validated");
     if (!form.checkValidity()) {
-      form.querySelectorAll(":invalid")[0].focus();
+      const firstInvalid = form.querySelector(":invalid");
+      if (firstInvalid) firstInvalid.focus();
       return;
     }
+
     const formData = new FormData(form);
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
 
-    result.innerHTML = "Sending...";
+    result.style.display = "block";
+    result.classList.remove("text-green-500", "text-red-500");
+    result.innerHTML = "A enviar...";
 
     fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -25,21 +48,24 @@ onMounted(() => {
       body: json,
     })
       .then(async (response) => {
-        let json = await response.json();
-        if (response.status == 200) {
+        const data = await response.json();
+
+        if (response.status === 200) {
           result.classList.add("text-green-500");
-          result.innerHTML = json.message;
+          result.innerHTML = "Mensagem enviada com sucesso. Obrigado!";
         } else {
           console.log(response);
           result.classList.add("text-red-500");
-          result.innerHTML = json.message;
+          result.innerHTML =
+            data?.message || "Não foi possível enviar. Tente novamente.";
         }
       })
       .catch((error) => {
         console.log(error);
-        result.innerHTML = "Something went wrong!";
+        result.classList.add("text-red-500");
+        result.innerHTML = "Ocorreu um erro. Tente novamente mais tarde.";
       })
-      .then(function () {
+      .then(() => {
         form.reset();
         form.classList.remove("was-validated");
         setTimeout(() => {
@@ -51,65 +77,98 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- To make this contact form work, create your free access key from https://web3forms.com/
-     Then you will get all form submissions in your email inbox. -->
   <form
+    id="form"
     action="https://api.web3forms.com/submit"
     method="POST"
-    id="form"
     class="needs-validation"
     novalidate
+    aria-label="Formulário de contacto"
   >
-    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
-    <!-- Create your free access key from https://web3forms.com/ -->
+    <input
+      type="hidden"
+      name="access_key"
+      value="27e86841-627a-405c-987b-35e79aa887a3"
+    />
+
+    <input
+      type="hidden"
+      name="subject"
+      value="Nova mensagem do site da Paróquia"
+    />
+    <input
+      type="hidden"
+      name="from_name"
+      value="Site — Paróquia de Castelões de Recesinhos"
+    />
+
     <input
       type="checkbox"
       class="hidden"
       style="display: none"
       name="botcheck"
     />
+
     <div class="mb-5">
+      <label for="nome" class="sr-only">Nome</label>
       <input
+        id="nome"
         type="text"
-        placeholder="Full Name"
-        required
-        class="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100"
         name="name"
+        placeholder="Nome completo"
+        required
+        autocomplete="name"
+        class="w-full px-4 py-3 border-2 placeholder:text-gray-600 rounded-md outline-none focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100"
       />
       <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
-        Please provide your full name.
+        Por favor, indique o seu nome completo.
       </div>
     </div>
+
     <div class="mb-5">
-      <label for="email_address" class="sr-only">Email Address</label
-      ><input
-        id="email_address"
+      <label for="email" class="sr-only">Endereço de email</label>
+      <input
+        id="email"
         type="email"
-        placeholder="Email Address"
         name="email"
+        placeholder="Endereço de email"
         required
-        class="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100"
+        autocomplete="email"
+        class="w-full px-4 py-3 border-2 placeholder:text-gray-600 rounded-md outline-none focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100"
       />
       <div class="empty-feedback text-red-400 text-sm mt-1">
-        Please provide your email address.
+        Por favor, indique o seu endereço de email.
       </div>
       <div class="invalid-feedback text-red-400 text-sm mt-1">
-        Please provide a valid email address.
+        Por favor, indique um email válido.
       </div>
     </div>
+
     <div class="mb-3">
+      <label for="mensagem" class="sr-only">Mensagem</label>
       <textarea
+        id="mensagem"
         name="message"
         required
-        placeholder="Your Message"
-        class="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none h-36 focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100"
+        placeholder="A sua mensagem"
+        class="w-full px-4 py-3 border-2 placeholder:text-gray-600 rounded-md outline-none h-36 focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100"
       ></textarea>
       <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
-        Please enter your message.
+        Por favor, escreva a sua mensagem.
       </div>
     </div>
-    <UiButton type="submit" size="lg" block>Send Message</UiButton>
-    <div id="result" class="mt-3 text-center"></div>
+
+    <!-- hCaptcha (Web3Forms) -->
+    <div class="h-captcha my-4" data-captcha="true" data-lang="pt"></div>
+
+    <UiButton type="submit" size="lg" block>Enviar mensagem</UiButton>
+
+    <div
+      id="result"
+      class="mt-3 text-center"
+      role="status"
+      aria-live="polite"
+    ></div>
   </form>
 </template>
 
