@@ -2,7 +2,7 @@
 const menuitems = [
   { title: "Início", path: "/" },
   { title: "Horários", path: "/horarios" },
-  { title: "Notícias", path: "/noticias" },
+  { title: "Publicações", path: "/publicacoes" },
   { title: "Contacto", path: "/contacto" },
 ];
 

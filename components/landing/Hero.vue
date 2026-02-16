@@ -1,5 +1,7 @@
 <template>
-  <main class="grid lg:grid-cols-2 place-items-center pt-4 pb-4 md:pt-6 lg:pt-2">
+  <main
+    class="grid lg:grid-cols-2 place-items-center pt-4 pb-4 md:pt-6 lg:pt-2"
+  >
     <div class="p-6 md:p-24">
       <img
         class="w-full max-w-xs md:max-w-md rounded-lg object-contain transition-transform transform hover:scale-105 shadow-lg"
@@ -31,6 +33,7 @@
         Obrigado por caminhar connosco.
       </p>
       <div class="mt-6 flex flex-col sm:flex-row gap-3">
+        <UiLink href="/publicacoes">Ver publicações</UiLink>
         <UiLink href="/contacto">Enviar mensagem</UiLink>
       </div>
     </div>
